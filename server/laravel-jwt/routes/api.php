@@ -3,9 +3,11 @@
 use Dingo\Api\Routing\Router;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+//use Illuminate\Routing\Router;
 
 /** @var Router $api */
 $api = app(Router::class);
+//
 
 $api->version('v1', function (Router $api) {
   $api->group(['prefix' => 'auth'], function(Router $api) {
@@ -14,6 +16,26 @@ $api->version('v1', function (Router $api) {
 
     $api->post('recovery', 'App\\Api\\V1\\Controllers\\ForgotPasswordController@sendResetEmail');
     $api->post('reset', 'App\\Api\\V1\\Controllers\\ResetPasswordController@resetPassword');
+
+    Route::get("fetchCities","CityManagementController@getCities");
+
+		Route::get("fetchStores","StoresManagementController@getStores");
+		Route::post("addEditStore","StoresManagementController@addEditStore");
+		Route::post("deleteStore","StoresManagementController@deleteStore");
+
+		$api->get("fetchbrands","App\\Http\\Controllers\\BrandsManagementController@getBrands");
+		Route::post("addEditBrand","BrandsManagementController@addEditBrand");
+		Route::post("deleteBrand","BrandsManagementController@deleteBrand");
+
+		Route::get("fetchoffers","OffersManagementController@getoffers");
+		Route::post("addEditOffer","OffersManagementController@addEditOffer");
+		Route::post("deleteOffer","OffersManagementController@deleteOffer");
+		Route::post("searchOffer","OffersManagementController@searchOfferByFields");
+		Route::post("fetchSearchSuggestions","OffersManagementController@searchSuggestion");
+
+		Route::get("fetchAds","AdsManagementController@getAds");
+		Route::post("addEditAd","AdsManagementController@addEditAd");
+		Route::post("deleteAd","AdsManagementController@deleteAd");
   });
 
   $api->group(['middleware' => 'jwt.auth'], function(Router $api) {
