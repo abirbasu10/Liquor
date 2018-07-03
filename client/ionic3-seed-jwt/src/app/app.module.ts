@@ -15,6 +15,8 @@ import { IntroPage } from '../pages/intro/intro'
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
+//import {IntroPage} from '../pages/intro/intro';
+
 let storage = new Storage({});
 
 export function getAuthHttp(http) {
