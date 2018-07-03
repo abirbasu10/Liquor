@@ -11,6 +11,7 @@ import {BooksService} from '../providers/books-service';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
+import { IntroPage } from '../pages/intro/intro'
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
@@ -30,7 +31,8 @@ export function createTranslateLoader(http: Http) {
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+   // IntroPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ export function createTranslateLoader(http: Http) {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+   // IntroPage
   ],
   providers: [
     StatusBar,
