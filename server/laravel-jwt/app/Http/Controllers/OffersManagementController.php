@@ -7,7 +7,7 @@ use DB;
 
 class OffersManagementController extends Controller
 {
-    public function getoffers()
+    public function getOffers()
     {
     	try{
     		$offers=DB::select("select o.id as offerId, o.name as offerName, o.value as offerValue,o.details as offerDetails,o.store_id as storeId,s.name as storeName,s.`type`as storeType,s.location as storeLocation, s.city_id as storeCityId,c.name as storeCity, o.brand_id as brandId, b.name as brandName,b.`type`as liquorType from offer o,store s, brand b, city c where o.store_id=s.id and s.city_id=c.id and o.brand_id=b.id");
