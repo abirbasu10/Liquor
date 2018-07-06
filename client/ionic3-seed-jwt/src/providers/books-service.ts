@@ -9,7 +9,7 @@ import *  as AppConfig from '../app/config';
 export class BooksService {
 
   private cfg: any;
-
+ 
   constructor(
     private authHttp: AuthHttp) {
 

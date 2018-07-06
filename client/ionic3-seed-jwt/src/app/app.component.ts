@@ -4,14 +4,14 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {AuthService} from '../providers/auth-service';
 import {TranslateService} from '@ngx-translate/core';
-
+import {Storage} from '@ionic/storage'
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = 'ProfilePage';
+  rootPage: any = '';
 
   pages: Array<{title: string, component: any, method?: any}>;
 
@@ -20,6 +20,7 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public authService: AuthService,
+    public storage: Storage,
     translate: TranslateService) {
 
     this.initializeApp();
@@ -32,6 +33,25 @@ export class MyApp {
       {title: 'page.books.list', component: 'BooksPage'},
       {title: 'page.logout', component: 'LoginPage', method: 'logout'}
     ];
+
+    this.platform.ready().then(()=>{
+    //  this.storage.clear();
+      this.storage.get('isIntroVisit').then((result)=>{
+            if(result){
+              this.rootPage='ProfilePage'
+            //  alert(this.rootPage)
+            }
+            else{
+              
+              this.rootPage='IntroPage';
+
+          //    alert(this.rootPage)
+              this.storage.set('isIntroVisit',true);
+            }
+          });
+
+    
+    });
 
   }
 
